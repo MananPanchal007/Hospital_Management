@@ -1,41 +1,40 @@
 package com.hospitalManagement.controller;
 
-import com.hospitalManagement.entity.Patient;
+import com.hospitalManagement.dto.PatientDTO;
 import com.hospitalManagement.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/patients")
 public class PatientController {
 
-    @Autowired
-    private PatientService patientService;
-
-    @PostMapping
-    public Patient createPatient(@RequestBody Patient patient) {
-        return patientService.createPatient(patient);
+    @Autowired private PatientService patientService;
+    
+    @PostMapping 
+    public PatientDTO createPatient(@RequestBody PatientDTO patientDTO) {
+        return patientService.createPatient(patientDTO);
     }
-
+        
     @GetMapping
-    public List<Patient> getAllPatients() {
+    public List<PatientDTO> getAllPatients() {
         return patientService.getAllPatients();
     }
 
     @GetMapping("/{id}")
-    public Patient getPatientById(@PathVariable Long id) {
+    public PatientDTO getPatientById(@PathVariable Long id) {
         return patientService.getPatientById(id).orElse(null);
     }
 
     @PutMapping("/{id}")
-    public Patient updatePatient(@PathVariable Long id, @RequestBody Patient patient) {
-        return patientService.updatePatient(id, patient);
+    public PatientDTO updatePatient(@PathVariable Long id, @RequestBody PatientDTO patientDTO) {
+        return patientService.updatePatient(id, patientDTO);
     }
 
     @DeleteMapping("/{id}")
     public void deletePatient(@PathVariable Long id) {
         patientService.deletePatient(id);
     }
+
 }

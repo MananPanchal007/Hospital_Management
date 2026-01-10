@@ -1,6 +1,6 @@
 package com.hospitalManagement.controller;
 
-import com.hospitalManagement.entity.Doctor;
+import com.hospitalManagement.dto.DoctorDTO;
 import com.hospitalManagement.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,23 +15,23 @@ public class DoctorController {
     private DoctorService doctorService;
 
     @PostMapping
-    public Doctor createDoctor(@RequestBody Doctor doctor) {
-        return doctorService.createDoctor(doctor);
+    public DoctorDTO createDoctor(@RequestBody DoctorDTO doctorDTO) {
+        return doctorService.createDoctor(doctorDTO);
     }
 
     @GetMapping
-    public List<Doctor> getAllDoctors() {
+    public List<DoctorDTO> getAllDoctors() {
         return doctorService.getAllDoctors();
     }
 
     @GetMapping("/{id}")
-    public Doctor getDoctorById(@PathVariable Long id) {
+    public DoctorDTO getDoctorById(@PathVariable Long id) {
         return doctorService.getDoctorById(id).orElse(null);
     }
 
     @PutMapping("/{id}")
-    public Doctor updateDoctor(@PathVariable Long id, @RequestBody Doctor doctor) {
-        return doctorService.updateDoctor(id, doctor);
+    public DoctorDTO updateDoctor(@PathVariable Long id, @RequestBody DoctorDTO doctorDTO) {
+        return doctorService.updateDoctor(id, doctorDTO);
     }
 
     @DeleteMapping("/{id}")

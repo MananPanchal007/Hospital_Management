@@ -1,6 +1,6 @@
 package com.hospitalManagement.controller;
 
-import com.hospitalManagement.entity.Appointment;
+import com.hospitalManagement.dto.AppointmentDTO;
 import com.hospitalManagement.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,23 +15,23 @@ public class AppointmentController {
     private AppointmentService appointmentService;
 
     @PostMapping
-    public Appointment createAppointment(@RequestBody Appointment appointment) {
-        return appointmentService.createAppointment(appointment);
+    public AppointmentDTO createAppointment(@RequestBody AppointmentDTO appointmentDTO) {
+        return appointmentService.createAppointment(appointmentDTO);
     }
 
     @GetMapping
-    public List<Appointment> getAllAppointments() {
+    public List<AppointmentDTO> getAllAppointments() {
         return appointmentService.getAllAppointments();
     }
 
     @GetMapping("/{id}")
-    public Appointment getAppointmentById(@PathVariable Long id) {
+    public AppointmentDTO getAppointmentById(@PathVariable Long id) {
         return appointmentService.getAppointmentById(id).orElse(null);
     }
 
     @PutMapping("/{id}")
-    public Appointment updateAppointment(@PathVariable Long id, @RequestBody Appointment appointment) {
-        return appointmentService.updateAppointment(id, appointment);
+    public AppointmentDTO updateAppointment(@PathVariable Long id, @RequestBody AppointmentDTO appointmentDTO) {
+        return appointmentService.updateAppointment(id, appointmentDTO);
     }
 
     @DeleteMapping("/{id}")
